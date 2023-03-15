@@ -67,7 +67,9 @@ const Signin = () => {
       expires: res.expires_in
     })
 
-    localStorage.setItem('firstLogin', true)
+    const status: any = true
+
+    localStorage.setItem('firstLogin', status)
     localStorage.setItem('access_token', res.access_token)
   };
 
