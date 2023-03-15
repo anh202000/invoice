@@ -108,10 +108,6 @@ const Filter = ({ state, keySort }: any) => {
           <SearchIcon />
         </div>
       </form>
-
-      <div className="input-group-prepend col-md-3 px-0 mb-4">
-        123 13222222222222222222222222222222222222222
-      </div>
     </div>
   );
 };

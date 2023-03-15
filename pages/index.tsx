@@ -20,22 +20,23 @@ const Home: FC<Iprops> = (props: any) => {
   const pageSize = router.query.pageSize || 10;
 
   useEffect(() => {
+    dispatch({ type: "NOTIFY", payload: { loading: true } });
     if (auth.token)
       getData(
         `invoice-service/1.0.0/invoices?pageNum=${page}&pageSize=${pageSize}`,
         state?.auth?.token,
         user?.data?.memberships[0]?.token
-      ).then(
-        (res: any) =>
-          dispatch({
-            type: "LISTINVOICE",
-            payload: res,
-          }),
-        router.push({
-          pathname: router.pathname,
-          query: { pageNum: 1, pageSize: 10 },
-        })
-      );
+      ).then((res: any) => {
+        dispatch({ type: "NOTIFY", payload: { loading: false } });
+        dispatch({
+          type: "LISTINVOICE",
+          payload: res,
+        }),
+          router.push({
+            pathname: router.pathname,
+            query: { pageNum: 1, pageSize: 10 },
+          });
+      });
   }, [auth]);
 
   const onPageChange = (e: any) => {
@@ -43,9 +44,14 @@ const Home: FC<Iprops> = (props: any) => {
 
     dispatch({ type: "NOTIFY", payload: { loading: true } });
 
-    const convertParams = Object.keys(router?.query).map((key: any) => key + "=" + router?.query[key]).join("&");
+    const convertParams = Object.keys(router?.query)
+      .map((key: any) => key + "=" + router?.query[key])
+      .join("&");
 
-    getData(`invoice-service/1.0.0/invoices?${convertParams}`, state?.auth?.token).then((res: any) => {
+    getData(
+      `invoice-service/1.0.0/invoices?${convertParams}`,
+      state?.auth?.token
+    ).then((res: any) => {
       dispatch({
         type: "LISTINVOICE",
         payload: res,
