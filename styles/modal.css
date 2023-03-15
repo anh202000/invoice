@@ -1,0 +1,26 @@
+/* Modal */
+
+.modal-custom {
+    position: fixed;
+    float: left;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    width: 80%;
+  }
+  
+  .modal_body{
+    height: 50rem;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .btn-submit-social {
+    border: 1px solid #FEF452;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+  }

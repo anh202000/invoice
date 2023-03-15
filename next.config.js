@@ -1,6 +1,5 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
+module.exports = {
+  env: {
+      "BASE_URL": "https://sandbox.101digital.io",
+  }
 }
-
-module.exports = nextConfig
